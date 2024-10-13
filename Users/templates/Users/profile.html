@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Профиль пользователя</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{{ user.username }} - Профиль</h1>
+    <p>Email: {{ user.email }}</p>
+    <h2>Биография</h2>
+    <p>{{ user.profile.bio }}</p>
+    <h2>Изображение профиля</h2>
+    {% if user.profile.profile_picture %}
+        <img src="{{ user.profile.profile_picture.url }}" alt="Изображение профиля" />
+    {% endif %}
+</body>
+</html>
