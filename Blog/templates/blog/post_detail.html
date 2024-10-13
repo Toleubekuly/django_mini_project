@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{{ post.content }}</p>
+    <p>Автор: {{ post.author.username }}</p>
+    <p>Создано: {{ post.created_at }}</p>
+
+    <h2>Комментарии</h2>
+    <ul>
+        {% for comment in comments %}
+            <li>
+                <strong>{{ comment.author.username }}</strong>: {{ comment.content }}
+                <p>Создано: {{ comment.created_at }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h3>Добавить комментарий</h3>
+    <form method="POST">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Отправить</button>
+    </form>
+
+    <a href="{% url 'post_edit' post.id %}">Редактировать пост</a>
+    <form action="{% url 'post_delete' post.id %}" method="POST">
+        {% csrf_token %}
+        <button type="submit">Удалить пост</button>
+    </form>
+</body>
+</html>

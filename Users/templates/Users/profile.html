@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,10 +11,12 @@
     <h1>{{ user.username }} - Профиль</h1>
     <p>Email: {{ user.email }}</p>
     <h2>Биография</h2>
-    <p>{{ user.profile.bio }}</p>
+    <p>{{ profile.bio }}</p>  <!-- Изменено на profile вместо user.profile -->
     <h2>Изображение профиля</h2>
-    {% if user.profile.profile_picture %}
-        <img src="{{ user.profile.profile_picture.url }}" alt="Изображение профиля" />
+    {% if profile.profile_picture %}
+        <img src="{{ profile.profile_picture.url }}" alt="Изображение профиля" />
+    {% else %}
+        <p>Изображение профиля не загружено.</p>
     {% endif %}
 </body>
 </html>

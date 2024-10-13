@@ -9,16 +9,13 @@
 </head>
 <body>
     <h1>Регистрация</h1>
-    <form method="POST">
+    <form method="POST" enctype="multipart/form-data">  <!-- Добавлено enctype -->
         {% csrf_token %}
-        <label for="username">Имя пользователя:</label>
-        <input type="text" name="username" id="username" required>
+        <h2>Данные пользователя</h2>
+        {{ user_form.as_p }}  <!-- Поля из формы пользователя -->
 
-        <label for="email">Электронная почта:</label>
-        <input type="email" name="email" id="email" required>
-
-        <label for="password">Пароль:</label>
-        <input type="password" name="password" id="password" required>
+        <h2>Дополнительная информация</h2>
+        {{ profile_form.as_p }}  <!-- Поля из формы профиля -->
 
         <button type="submit">Зарегистрироваться</button>
     </form>
